@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   # end
   resources :albums
   resources :pictures
+  get '/users' => "users#index"
+  get '/users/:id' => "users#show", as: :user
 end
