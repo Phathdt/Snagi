@@ -1,0 +1,13 @@
+= form_for @picture do |f|
+	.field
+		= f.label :title 
+		%br/
+		= f.text_field :title
+	.field
+		= f.label :description
+		%br/
+		= f.text_field :description
+	.field
+		= image_tag @picture.image.url
+	.action
+		= f.submit

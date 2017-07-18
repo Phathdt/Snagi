@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'albums#index'
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
+  # resources :albums do
+  #   resources :pictures
+  # end
+  resources :albums
+  resources :pictures
 end

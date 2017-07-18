@@ -24,6 +24,10 @@ gem 'devise'
 gem 'hirb'
 # Use Faker
 gem 'faker'
+# Use Paperclip
+gem "paperclip", "~> 5.0.0"
+# Use gem Kaminari to paginate
+gem 'kaminari'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

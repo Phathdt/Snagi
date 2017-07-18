@@ -1,0 +1,16 @@
+%p Hello World
+%p= link_to "Add Album", new_album_path 
+.table
+  %table
+    %thead
+      %tr
+        %th Title
+        %th Description
+        %th Link
+    %tbody
+      - @albums.each do |album|
+        %tr
+          %td= album.title
+          %td= album.description
+          %td= link_to "Show", album_path(album)
+= paginate @albums

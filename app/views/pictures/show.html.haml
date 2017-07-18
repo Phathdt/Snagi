@@ -1,0 +1,5 @@
+%p= @picture.title
+%p= @picture.description
+= image_tag @picture.image.url
+
+= link_to "Edit", edit_picture_path(@picture)
