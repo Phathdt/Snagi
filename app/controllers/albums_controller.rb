@@ -43,10 +43,20 @@ class AlbumsController < ApplicationController
     redirect_to user_albums_path(@album.user), notice: 'Album Destroy'
   end
 
+  def like
+    album = Album.find(params[:album_id])
+    if Like.where(:likeable => album, :user_id => current_user.id).exists?
+      Like.find_by(:likeable => album, :user_id => current_user.id).delete
+    else
+      Like.create(likeable:album,user_id:current_user.id)
+    end
+  end
+
   private
 
   def check
-    permission = CheckPermissionService.new(current_user, params).have_permission?
+    is_private = Album.exists?(params[:id]) ? Album.find(params[:id]).is_private : false
+    permission = CheckPermissionService.new(current_user, params, is_private).have_permission?
     redirect_to root_path unless permission
   end
 
@@ -54,6 +64,7 @@ class AlbumsController < ApplicationController
     @album = Album.find(params[:id])
     @pictures = @album.pictures
     @user = User.find(params[:user_id])
+    @current_user = current_user
   end
 
   def album_params

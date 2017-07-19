@@ -2,8 +2,6 @@ User.create!([
   {email: "user1@gmail.com", password:"123456789", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2017-07-18 07:09:48", last_sign_in_at: "2017-07-18 07:09:48", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", is_active: true, is_admin: false},
   {email: "user2@gmail.com", password:"123456789", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2017-07-19 04:07:05", last_sign_in_at: "2017-07-19 03:55:32", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", is_active: true, is_admin: false},
   {email: "user3@gmail.com", password:"123456789", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2017-07-18 07:09:48", last_sign_in_at: "2017-07-18 07:09:48", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", is_active: true, is_admin: true }
-)
-
 ])
 Album.create!([
   {user_id: 1, title: "hinh anh em ", description: "hinh m", quality: 0, is_private: false, like_count: 0},

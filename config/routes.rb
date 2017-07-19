@@ -6,14 +6,12 @@ Rails.application.routes.draw do
 
   }
   resources :users do
-    resources :albums
+    resources :albums do
+      post :like
+      # member do
+      #   post :like
+      # end
+    end
     resources :pictures
   end
-  # resources :albums do
-  #   resources :pictures
-  # end
-  # resources :albums
-  # resources :pictures
-  # get '/users' => "users#index"
-  # get '/users/:id' => "users#show", as: :user
 end
