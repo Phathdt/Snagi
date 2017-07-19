@@ -1,15 +1,13 @@
 class CheckPermissionService
-	def initialize(current_user, params)
-	  @current_user = current_user	
-	  @params = params
-	end
+  def initialize(current_user, params, is_private)
+    @current_user = current_user
+    @params = params
+    @is_private = is_private
+  end
 
-	def have_permission?
-		owner = User.find(@params[:user_id]) 
-		@current_user == owner || @current_user.is_admin?		
-	end
-
-	def check_permission
-		have_permission? ? true : false
-	end
+  def have_permission?
+    owner = User.find(@params[:user_id])
+    @current_user == owner || @is_private || @current_user.is_admin?
+  end
+  
 end

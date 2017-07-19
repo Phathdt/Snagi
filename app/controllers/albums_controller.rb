@@ -1,7 +1,7 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
   before_action :check, except: [:index, :show]
-  
+
   def index
     @albums = Album.belongs_to_user(params[:user_id]).page(params[:page]).per(5)
   end
@@ -46,7 +46,7 @@ class AlbumsController < ApplicationController
   private
 
   def check
-    permission = CheckPermissionService.new(current_user, params).check_permission
+    permission = CheckPermissionService.new(current_user, params).have_permission?
     redirect_to root_path unless permission
   end
 
