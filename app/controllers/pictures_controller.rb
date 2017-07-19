@@ -2,7 +2,7 @@ class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
   def update
     if @picture.update(picture_params)
-      redirect_to @picture
+      redirect_to [@user, @picture]
     else
       render 'edit'
     end
@@ -10,7 +10,7 @@ class PicturesController < ApplicationController
 
   def destroy
     @picture.destroy
-    redirect_to @album
+    redirect_to [@user,@album]
   end
 
   private
@@ -18,6 +18,7 @@ class PicturesController < ApplicationController
   def set_picture
     @picture = Picture.find(params[:id])
     @album = @picture.album
+    @user = @album.user
   end
 
   def picture_params

@@ -1,5 +1,5 @@
 %p Hello World
-%p= link_to "Add Album", new_album_path 
+%p= link_to "Add Album", new_user_album_path 
 .table
   %table
     %thead
@@ -12,5 +12,7 @@
         %tr
           %td= album.title
           %td= album.description
-          %td= link_to "Show", album_path(album)
-= paginate @albums
+          %td= link_to "Show", user_album_path(album.user,album)
+          %td= link_to "Edit", edit_user_album_path(album.user,album)
+          %td= link_to 'Destroy', [album.user,album], method: :delete, data: { confirm: 'Are you sure?' }
+/ = paginate @albums

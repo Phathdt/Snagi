@@ -2,6 +2,6 @@
 %p= @picture.description
 = image_tag @picture.image.url
 
-= link_to "Edit", edit_picture_path(@picture)
-= link_to "Go to album", album_path(@album)
-= link_to 'Destroy', @picture, method: :delete, data: { confirm: 'Are you sure?' }
+= link_to "Edit", edit_user_picture_path(@user,@picture)
+= link_to "Go to album", user_album_path(@user,@album)
+= link_to 'Destroy', [@user,@picture], method: :delete, data: { confirm: 'Are you sure?' }

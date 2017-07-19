@@ -1,11 +1,14 @@
 class AlbumsController < ApplicationController
   before_action :set_ablum, only: [:show, :edit, :update, :destroy]
   def index
-  	@albums = Album.all.page(params[:page]).per(5)
+    # @albums = Album.all.page(params[:page]).per(5)
+  	@albums = Album.belongs_to_user(params[:user_id])
+    
   end
 
   def new
     @album = Album.new
+    @user = current_user
   end
 
   def create
@@ -16,7 +19,7 @@ class AlbumsController < ApplicationController
           @album.pictures.create(image: image)
         }
       end
-      redirect_to @album, notice: 'Album was successfully created.'
+      redirect_to user_albums_path(@album.user), notice: 'Album was successfully created.'
     else
       render 'new'
     end
@@ -29,7 +32,7 @@ class AlbumsController < ApplicationController
           @album.pictures.create(image: image)
         }
       end
-      redirect_to @album, notice: 'Album was successfully updated.'
+      redirect_to user_albums_path(@album.user), notice: 'Album was successfully updated.'
     else
       render 'edit'
     end
@@ -37,13 +40,14 @@ class AlbumsController < ApplicationController
 
   def destroy
   	@album.destroy
-  	redirect_to albums_path
+  	redirect_to user_albums_path(@album.user), notice: 'Album Destroy'
   end
 
   private
   def set_ablum
     @album = Album.find(params[:id])
     @pictures = @album.pictures
+    @user = @album.user
   end
 
   def album_params

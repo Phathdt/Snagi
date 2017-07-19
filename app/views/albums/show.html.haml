@@ -1,7 +1,7 @@
-= link_to "Index" , albums_path
-= link_to "Edit", edit_album_path
+= link_to "Index" , user_albums_path
+= link_to "Edit", edit_user_album_path
 
 - @pictures.each do |picture|
-  %p= link_to image_tag(picture.image.url), picture_path(picture)
+  %p= link_to image_tag(picture.image.url), user_picture_path(@user,picture)
   %p= picture.title
-  = link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' }
+  = link_to 'Destroy', [@user,picture], method: :delete, data: { confirm: 'Are you sure?' }

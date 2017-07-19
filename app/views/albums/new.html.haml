@@ -1,4 +1,4 @@
 %p New Album
-= render 'form', album: @album
+= render 'form', album: @album, user: @user
 
-= link_to "Back", albums_path
+= link_to "Back", user_albums_path(@user)
