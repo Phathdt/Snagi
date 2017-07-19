@@ -2,9 +2,7 @@ class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
   before_action :check_permission, except: [:index, :show]
   def index
-    # @albums = Album.all.page(params[:page]).per(5)
     @albums = Album.belongs_to_user(params[:user_id]).page(params[:page]).per(5)
-
   end
 
   def new
@@ -48,7 +46,7 @@ class AlbumsController < ApplicationController
   def set_album
     @album = Album.find(params[:id])
     @pictures = @album.pictures
-    @user = @album.user
+    @user = User.find(params[:user_id])
   end
 
   def album_params
@@ -61,7 +59,7 @@ class AlbumsController < ApplicationController
 
   def check_permission
     unless have_permission?
-      redirect_to root_path, notice: 'dont have permission'      
+      redirect_to root_path, notice: 'You dont have permission'      
     end
   end
 end

@@ -28,6 +28,8 @@ gem 'faker'
 gem "paperclip", "~> 5.0.0"
 # Use gem Kaminari to paginate
 gem 'kaminari'
+# Real data to Seed file
+gem 'seed_dump'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
