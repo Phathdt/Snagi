@@ -6,7 +6,6 @@ class CheckPermissionService
   end
 
   def have_permission?
-    p @params
     owner = User.find(@params[:user_id])
     @current_user == owner || @is_private || @current_user.is_admin?
   end
