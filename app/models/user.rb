@@ -12,4 +12,14 @@ class User < ApplicationRecord
   has_many :liked_pictures, through: :likes, source: :likeable, source_type: 'Picture'
   has_many :liked_albums, through: :likes, source: :likeable, source_type: 'Album'
 
+  # Assocation Follow
+  has_many :following, as: :followable, class_name: 'Follow'
+  # ai dang follow toy
+  has_many :following_users, through: :following, source: :user
+  has_many :follows
+  # toi dang follow ai
+  has_many :followed_users, through: :follows, source: :followable, source_type: 'User'
+  has_many :followable, through: :follows
+  has_many :followed_pictures, through: :follows, source: :followable, source_type: 'Picture'
+  has_many :followed_albums, through: :follows, source: :followable, source_type: 'Albums'
 end

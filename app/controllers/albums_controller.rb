@@ -3,6 +3,7 @@ class AlbumsController < ApplicationController
   before_action :check_permission
 
   def index
+    @user = User.find(params[:user_id])
     @albums = Album.belongs_to_user(params[:user_id]).page(params[:page]).per(5)
   end
 
@@ -47,6 +48,14 @@ class AlbumsController < ApplicationController
     LikeService.new({user_id:current_user.id,type:'Album',id:params[:id]}).like
   end
 
+  def follow
+    FollowService.new({user_id:current_user.id,type:'Album',id:params[:id]}).follow
+  end
+
+  def follow_user
+    FollowService.new({user_id:current_user.id,type:'User',id:params[:id]}).follow
+  end
+
   def set_private
     SetPrivateService.new({type:'Album',id:params[:id]}).set_private
   end
@@ -57,7 +66,7 @@ class AlbumsController < ApplicationController
     permission = PermissionService.new({current_user:current_user,
                                         owner:params[:user_id],
                                         action: params[:action],
-                                        id:params[:id], 
+                                        id:params[:id],
                                         type:"Album"}).have_permission?
     redirect_to root_path unless permission
   end

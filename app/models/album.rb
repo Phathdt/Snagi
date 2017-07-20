@@ -5,4 +5,7 @@ class Album < ApplicationRecord
 
   has_many :likes, as: :likeable
   has_many :liked_users, through: :likes,source: :user
+
+  has_many :follows, as: :followable
+  has_many :followed_users, through: :follows,source: :user
 end

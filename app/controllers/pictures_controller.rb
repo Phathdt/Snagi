@@ -18,6 +18,10 @@ class PicturesController < ApplicationController
     LikeService.new({user_id:current_user.id,type:'Picture',id:params[:id]}).like
   end
 
+  def follow
+    FollowService.new({user_id:current_user.id,type:'Picture',id:params[:id]}).follow
+  end
+ 
   def set_private
     SetPrivateService.new({type:'Picture',id:params[:id]}).set_private
   end
@@ -30,7 +34,6 @@ class PicturesController < ApplicationController
                                         action: params[:action],
                                         id:params[:id], 
                                         type:"Picture"}).have_permission?
-    puts permission
     redirect_to root_path unless permission
   end
 

@@ -4,6 +4,9 @@ class Picture < ApplicationRecord
   has_many :likes, as: :likeable
   has_many :liked_users, through: :likes,source: :user
 
+  has_many :follows, as: :followable
+  has_many :followed_users, through: :follows,source: :user
+  
   after_create :increase_album_quality
   after_destroy :decrease_ablum_quality
 
