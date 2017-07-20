@@ -13,7 +13,6 @@ class PermissionService
     elsif @action == "show"
       if @type == "Album"
         is_private = Album.find(@id).is_private?
-
       else
         is_private = Picture.find(@id).is_private?
       end

@@ -28,7 +28,8 @@ class PicturesController < ApplicationController
     permission = PermissionService.new({current_user:current_user,
                                         owner:params[:user_id],
                                         action: params[:action],
-                                        id:params[:id]}).have_permission?
+                                        id:params[:id], 
+                                        type:"Picture"}).have_permission?
     puts permission
     redirect_to root_path unless permission
   end
