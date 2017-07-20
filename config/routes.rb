@@ -15,5 +15,7 @@ Rails.application.routes.draw do
         post :like, :follow, :set_private
       end
     end
+
+    resources :notifications
   end
 end

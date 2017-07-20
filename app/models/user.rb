@@ -22,4 +22,7 @@ class User < ApplicationRecord
   has_many :followable, through: :follows
   has_many :followed_pictures, through: :follows, source: :followable, source_type: 'Picture'
   has_many :followed_albums, through: :follows, source: :followable, source_type: 'Albums'
+
+  # Co nhieu notification
+  has_many :notifications
 end
