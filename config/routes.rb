@@ -7,12 +7,12 @@ Rails.application.routes.draw do
     resources :albums do
       # post :like
       member do
-        post :like
+        post :like, :set_private
       end
     end
     resources :pictures do
       member do
-        post :like
+        post :like, :set_private
       end
     end
   end

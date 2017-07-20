@@ -1,7 +1,6 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
-  before_action :check_permission, except: [:index, :show]
-
+  before_action :check_permission
   def update
     if @picture.update(picture_params)
       redirect_to [@user, @picture]
@@ -19,13 +18,21 @@ class PicturesController < ApplicationController
     LikeService.new({user_id:current_user.id,type:'Picture',id:params[:id]}).like
   end
 
+  def set_private
+    SetPrivateService.new({type:'Picture',id:params[:id]}).set_private
+  end
+
   private
-  
+
   def check_permission
-    is_private = Picture.exists?(params[:id]) ? Picture.find(params[:id]).is_private : false
-    permission = PermissionService.new(current_user, params, is_private).have_permission?
+    permission = PermissionService.new({current_user:current_user,
+                                        owner:params[:user_id],
+                                        action: params[:action],
+                                        id:params[:id]}).have_permission?
+    puts permission
     redirect_to root_path unless permission
   end
+
 
   def set_picture
     @picture = Picture.find(params[:id])

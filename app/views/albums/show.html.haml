@@ -3,8 +3,14 @@
 %h1= @album.title
 %h1= @album.description
 %h1= @album.likes.count
+%h1= @album.is_private
+
 %h1= link_to 'Like', like_user_album_path(@current_user,@album), method: :post 
+%h1= link_to 'Private', set_private_user_album_path(@current_user,@album), method: :post 
 - @pictures.each do |picture|
   %p= link_to image_tag(picture.image.url), user_picture_path(@user,picture)
   %p= picture.title
   = link_to 'Destroy', [@user,picture], method: :delete, data: { confirm: 'Are you sure?' }
+
+
+  
