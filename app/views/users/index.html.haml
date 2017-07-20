@@ -1,3 +1,4 @@
 - @users.each do |user|
   %p= user.email
   = link_to "Show", user_albums_path(user)
+  = link_to 'Edit Profile',edit_user_registration_path
