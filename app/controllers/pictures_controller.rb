@@ -13,12 +13,17 @@ class PicturesController < ApplicationController
     redirect_to [@user,@album]
   end
 
+  def like
+    LikeService.new({user_id:current_user.id,type:'Picture',id:params[:id]}).like
+  end
+
   private
 
   def set_picture
     @picture = Picture.find(params[:id])
     @album = @picture.album
     @user = @album.user
+    @current_user = current_user
   end
 
   def picture_params

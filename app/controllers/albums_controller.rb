@@ -44,12 +44,7 @@ class AlbumsController < ApplicationController
   end
 
   def like
-    album = Album.find(params[:album_id])
-    if Like.where(:likeable => album, :user_id => current_user.id).exists?
-      Like.find_by(:likeable => album, :user_id => current_user.id).delete
-    else
-      Like.create(likeable:album,user_id:current_user.id)
-    end
+    LikeService.new({user_id:current_user.id,type:'Album',id:params[:id]}).like
   end
 
   private

@@ -3,7 +3,7 @@
 %h1= @album.title
 %h1= @album.description
 %h1= @album.likes.count
-%h1= link_to 'Like', user_album_like_path(@current_user,@album), method: :post 
+%h1= link_to 'Like', like_user_album_path(@current_user,@album), method: :post 
 - @pictures.each do |picture|
   %p= link_to image_tag(picture.image.url), user_picture_path(@user,picture)
   %p= picture.title
