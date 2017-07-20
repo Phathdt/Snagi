@@ -51,7 +51,7 @@ class AlbumsController < ApplicationController
 
   def check_permission
     is_private = Album.exists?(params[:id]) ? Album.find(params[:id]).is_private : false
-    permission = CheckPermissionService.new(current_user, params, is_private).have_permission?
+    permission = PermissionService.new(current_user, params, is_private).have_permission?
     redirect_to root_path unless permission
   end
 

@@ -1,5 +1,7 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :check_permission, except: [:index, :show]
+
   def update
     if @picture.update(picture_params)
       redirect_to [@user, @picture]
@@ -18,6 +20,12 @@ class PicturesController < ApplicationController
   end
 
   private
+  
+  def check_permission
+    is_private = Picture.exists?(params[:id]) ? Picture.find(params[:id]).is_private : false
+    permission = PermissionService.new(current_user, params, is_private).have_permission?
+    redirect_to root_path unless permission
+  end
 
   def set_picture
     @picture = Picture.find(params[:id])
