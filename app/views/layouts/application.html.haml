@@ -4,11 +4,19 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Snagi
     = csrf_meta_tags
+    %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0", :name => "viewport"}/
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body
-    %p.notice= notice
-    %p.alert= alert
-    %p= link_to "Out", destroy_user_session_path,:method => :delete
-    %p= link_to "In", new_user_session_path
+    %link{:rel => "stylesheet", :href => "https://fonts.googleapis.com/icon?family=Material+Icons"}/
+    %link{:rel => "stylesheet", :href => "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"}/
+    %link{:rel => "stylesheet", :href => "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"}/
+    = stylesheet_link_tag 'devise' ,'bootstrap.min', 'material-kit'
+    = javascript_include_tag 'jquery.min', 'material.min', 'material.min', 'bootstrap.min' 
+  %body.landing-page
+    = render "shared/navbar"
+
+    / %p.notice= notice
+    / %p.alert= alert
+    / %p= link_to "Out", destroy_user_session_path,:method => :delete
+    / %p= link_to "In", new_user_session_path
     = yield

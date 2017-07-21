@@ -1,4 +1,6 @@
-- if controller_name != 'sessions'
+- if controller_name != 'sessions' && params[:action] == "new"
   %h4 Sign Up
 - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
   %h4 Log In
+- if controller_name == "registrations" && params[:action] == "edit"
+  %h4 Edit Profile

@@ -25,4 +25,9 @@ class User < ApplicationRecord
 
   # Co nhieu notification
   has_many :notifications
+
+  has_attached_file :avatar 
+  has_attached_file :wallpaper
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+  validates_attachment_content_type :wallpaper, content_type: /\Aimage\/.*\z/
 end

@@ -1,0 +1,10 @@
+.wrapper
+  = render "shared/wallpaper", url: 'wallpaper.jpg'
+  .main.main-raised
+    .container
+      .section.text-center
+        %h2.title List User
+        .team
+          .row
+            - @users.each do |user|
+              = render "shared/user", user: user   
