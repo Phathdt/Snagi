@@ -1,0 +1,23 @@
+%nav.navbar.navbar-transparent.navbar-absolute
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#navigation-example", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "http://www.creative-tim.com"} Snagi
+    #navigation-example.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          %a{:href => ""}
+            %i.material-icons accessibility
+            About Us
+        %li
+          %a{:href => ""}
+            %i.material-icons pageview
+            Question & Answer
+        %li
+          %a{:href => "http://demos.creative-tim.com/material-kit-pro/presentation.html?ref=utp-freebie", :target => "_blank"}
+            %i.material-icons unarchive
+            Upgrade to PRO

@@ -1,0 +1,19 @@
+.wrapper.wrapper-padding
+  .header.header-filter{:style => "background-image: url(#{image_path('city.jpg')}); background-size: cover; background-position: top center;"}
+    .container
+      .row
+        .col-md-4.col-md-offset-4.col-sm-6.col-sm-offset-3
+          .card.card-signup
+            .header.header-primary.text-center
+              = render "devise/shared/text"
+              .social-line
+                %a.btn.btn-simple.btn-just-icon{:href => "#pablo"}
+                  %i.fa.fa-facebook-square
+                %a.btn.btn-simple.btn-just-icon{:href => "#pablo"}
+                  %i.fa.fa-twitter
+                %a.btn.btn-simple.btn-just-icon{:href => "#pablo"}
+                  %i.fa.fa-google-plus
+            .content.padding
+              = render "devise/shared/sub"
+            .text-center
+              = render "devise/shared/links"

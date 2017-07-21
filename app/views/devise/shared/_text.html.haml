@@ -1,0 +1,4 @@
+- if controller_name != 'sessions'
+  %h4 Sign Up
+- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+  %h4 Log In

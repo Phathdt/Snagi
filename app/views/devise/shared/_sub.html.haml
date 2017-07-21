@@ -1,0 +1,6 @@
+- if controller_name != 'sessions'
+  = render 'devise/registrations/form_new'
+  %br/
+- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+  = render 'devise/sessions/form_new'
+  %br/

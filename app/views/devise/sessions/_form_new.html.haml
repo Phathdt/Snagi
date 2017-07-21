@@ -1,0 +1,17 @@
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  = devise_error_messages!
+  .input-group.padding-group
+    %span.input-group-addon
+      %i.material-icons email
+    =f.email_field :email, {class:"form-control", placeholder:"Your Email...", autofocus: true}
+  .input-group.padding-group
+    %span.input-group-addon
+      %i.material-icons lock_outline
+    =f.password_field :password, {class:"form-control", placeholder: "Your Password..."}
+  - if devise_mapping.rememberable?
+    .input-group.padding-group.text-center
+      = f.check_box :remember_me
+      = f.label :remember_me  
+  .footer.text-center
+    = f.submit "Log in", {class:"btn btn-simple btn-primary btn-lg"}
+
