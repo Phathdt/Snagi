@@ -3,18 +3,14 @@ class FollowService
     @user_id = params[:user_id]
     @type = params[:type]
     @id = params[:id]
-    p params
   end
 
   def follow
     if Follow.where(:followable_type => @type,
                   :followable_id => @id,
                   :user_id => @user_id).exists?
-    puts "111111111111111111"
       delete_follow
     else
-    puts "22222222222222222"
-
       add_follow
     end
   end

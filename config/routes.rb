@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
   resources :users do
+    member do
+      post :disable
+    end
     resources :albums do
       # post :like
       member do

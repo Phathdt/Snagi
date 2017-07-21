@@ -2,3 +2,4 @@
   %p= user.email
   = link_to "Show", user_albums_path(user)
   = link_to 'Edit Profile',edit_user_registration_path
+  %p= link_to 'Disable', disable_user_path(user), method: :post 
