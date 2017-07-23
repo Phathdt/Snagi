@@ -3,9 +3,12 @@
 = image_tag @picture.image.url
 %h1= @picture.likes.count
 %h1= @picture.is_private
-%h1= link_to 'Like', like_user_picture_path(@current_user,@picture), method: :post 
-%h1= link_to 'Follow', follow_user_picture_path(@current_user,@picture), method: :post 
-%h1= link_to 'Private', set_private_user_picture_path(@current_user,@picture), method: :post 
-= link_to "Edit", edit_user_picture_path(@user,@picture)
+- if user_signed_in?
+  %h1= link_to 'Like', like_user_picture_path(@current_user,@picture), method: :post
+  %h1= link_to 'Follow', follow_user_picture_path(@current_user,@picture), method: :post
+  - if current_user.is_admin?
+    %h1= link_to 'Private', set_private_user_picture_path(@current_user,@picture), method: :post
+  - if current_user.is_admin? || current_user.id = params[:user_id]
+    = link_to "Edit", edit_user_picture_path(@user,@picture)
+    = link_to 'Destroy', [@user,@picture], method: :delete, data: { confirm: 'Are you sure?' }
 = link_to "Go to album", user_album_path(@user,@album)
-= link_to 'Destroy', [@user,@picture], method: :delete, data: { confirm: 'Are you sure?' }

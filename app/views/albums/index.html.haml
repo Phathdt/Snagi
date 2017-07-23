@@ -1,8 +1,9 @@
 = render "shared/wallpaper_profile", url: 'city.jpg'
 %p Hello World
 %h1= @user.email
-%p= link_to 'Follow', follow_user_user_album_path(@current_user,@user), method: :post 
-%p= link_to "Add Album", new_user_album_path 
+- if user_signed_in?
+  %p= link_to 'Follow', follow_user_user_album_path(@current_user,@user), method: :post
+%p= link_to "Add Album", new_user_album_path
 .table
   %table
     %thead
@@ -16,6 +17,8 @@
           %td= album.title
           %td= album.description
           %td= link_to "Show", user_album_path(album.user,album)
-          %td= link_to "Edit", edit_user_album_path(album.user,album)
-          %td= link_to 'Destroy', [album.user,album], method: :delete, data: { confirm: 'Are you sure?' }
+          - if user_signed_in?
+            - if current_user.is_admin? || current_user.id == params[:user_id]
+              %td= link_to "Edit", edit_user_album_path(album.user,album)
+              %td= link_to 'Destroy', [album.user,album], method: :delete, data: { confirm: 'Are you sure?' }
 = paginate @albums

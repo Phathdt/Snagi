@@ -21,7 +21,7 @@ class PicturesController < ApplicationController
   def follow
     FollowService.new({user_id:current_user.id,type:'Picture',id:params[:id]}).follow
   end
- 
+
   def set_private
     SetPrivateService.new({type:'Picture',id:params[:id]}).set_private
   end
@@ -29,10 +29,14 @@ class PicturesController < ApplicationController
   private
 
   def check_permission
+    unless user_signed_in?
+      current_user = User.new
+      current_user.id = 0
+    end
     permission = PermissionService.new({current_user:current_user,
                                         owner:params[:user_id],
                                         action: params[:action],
-                                        id:params[:id], 
+                                        id:params[:id],
                                         type:"Picture"}).have_permission?
     redirect_to root_path unless permission
   end
