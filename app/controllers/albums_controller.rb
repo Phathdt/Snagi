@@ -83,7 +83,7 @@ class AlbumsController < ApplicationController
   end
 
   def disable_user
-    SetActiveUserService.new({id:params[:user_id]}).set_active
+    UserService.new({id:params[:user_id]}).set_active
   end
   private
 
