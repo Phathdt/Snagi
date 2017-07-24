@@ -1,11 +1,11 @@
-= render "shared/wallpaper_profile", url: 'wallpaper.jpg'
+= render "shared/wallpaper_profile", url: 'wallpaper.jpg' , user: @user
 .main.main-raised
   .profile-content
     .container
       .row
         .profile
-          .avatar
-            %img.img-circle.img-responsive.img-raised.image-center{:alt => "Circle Image", :src => "#{image_path('default-avatar.png')}"}/
+          - p @user
+          = render 'shared/avatar' , user: @user
           .name.text-center
             %h3.title= @user.name
             = render 'form', album: @album, user: @user

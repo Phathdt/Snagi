@@ -1,0 +1,3 @@
+- avatar  = user.avatar.exists? ? image_url(user.avatar.url) : image_path('default-avatar.png')
+.avatar
+  %img.img-circle.img-responsive.img-raised.image-center{:alt => "Circle Image", :src => "#{avatar}"}/

@@ -12,6 +12,11 @@
     %span.input-group-addon
       %i.material-icons lock_outline
     =f.password_field :password, {class:"form-control", placeholder: "Your Password..."}
+    - if @minimum_password_length
+      %br/
+      %em
+        = @minimum_password_length
+        characters minimum
   .input-group.padding-group
     %span.input-group-addon
       %i.material-icons lock_outline
