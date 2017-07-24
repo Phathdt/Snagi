@@ -5,19 +5,3 @@ User.create!([
 Album.create!([
   {user_id: 1, title: "Hình các con thú", description: "Con thú dễ thương :v ", quality: 6, is_private: true, like_count: 0}
 ])
-Follow.create!([
-  {user_id: 1, followable_type: "Album", followable_id: 1}
-])
-Picture.create!([
-  {album_id: 1, title: nil, description: nil, is_private: false, like_count: 0, image_file_name: "de.jpg", image_content_type: "image/jpeg", image_file_size: 9185, image_updated_at: "2017-07-24 04:36:31"},
-  {album_id: 1, title: nil, description: nil, is_private: false, like_count: 0, image_file_name: "voi.jpg", image_content_type: "image/jpeg", image_file_size: 130279, image_updated_at: "2017-07-24 04:36:31"},
-  {album_id: 1, title: nil, description: nil, is_private: false, like_count: 0, image_file_name: "cu.jpg", image_content_type: "image/jpeg", image_file_size: 7387, image_updated_at: "2017-07-24 04:37:43"},
-  {album_id: 1, title: nil, description: nil, is_private: false, like_count: 0, image_file_name: "de.jpg", image_content_type: "image/jpeg", image_file_size: 9185, image_updated_at: "2017-07-24 04:37:43"},
-  {album_id: 1, title: nil, description: nil, is_private: false, like_count: 0, image_file_name: "voi.jpg", image_content_type: "image/jpeg", image_file_size: 130279, image_updated_at: "2017-07-24 04:37:43"},
-  {album_id: 1, title: "", description: "", is_private: false, like_count: 0, image_file_name: "cu.jpg", image_content_type: "image/jpeg", image_file_size: 7387, image_updated_at: "2017-07-24 04:36:31"}
-])
-
-Like.create!([
-  {user_id: 1, likeable_type: "Picture", likeable_id: 1},
-  {user_id: 1, likeable_type: "Album", likeable_id: 1}
-])

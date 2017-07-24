@@ -1,7 +1,15 @@
 class UsersController < ApplicationController
   before_action :load_notification
   def index
-    @users = User.where(is_active:true)
+    if user_signed_in?
+      if current_user.is_admin?
+        @users = User.all
+      else
+        @users = User.where(is_active:true)
+      end
+    else
+      @users = User.where(is_active:true)
+    end
   end
 
   def disable_user
@@ -9,6 +17,6 @@ class UsersController < ApplicationController
   end
 
   def delete_user
-    
+
   end
 end

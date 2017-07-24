@@ -15,7 +15,7 @@
               - if current_user.id == params[:user_id].to_i
                 = link_to "Add Album", new_user_album_path, {class:"btn btn-simple btn-primary btn-lg"}
               - if current_user.is_admin?
-                .btn.btn-simple.btn-primary.btn-lg= link_to 'Disable/Enable User', disable_user_user_album_path(@current_user,@user), method: :post
+                .btn.btn-simple.btn-primary.btn-lg= link_to 'Disable/Enable User', disable_user_user_album_path(@user,@current_user), method: :post
       .description.text-center
         %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio quaerat consectetur obcaecati deserunt, quos minima excepturi fugit impedit eveniet possimus nemo dicta totam quam voluptates, magni labore! Ratione, at, inventore.
       .row
