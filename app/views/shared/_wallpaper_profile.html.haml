@@ -1,5 +1,5 @@
-
-.header.header-filter{:style => "background-image: url(#{image_path( url )}"}
+- wallpaper  = user.wallpaper.exists? ? image_url(user.wallpaper.url) : image_path('wallpaper.jpg')
+.header.header-filter{:style => "background-image: url(#{wallpaper}"}
   .container
     .row
       .col-md-6

@@ -26,6 +26,10 @@ class AlbumsController < ApplicationController
     end
   end
 
+  def show
+    @pictures = @album.pictures.page(params[:page]).per(3)
+  end
+
   def update
     if @album.update(album_params)
       if params[:images]

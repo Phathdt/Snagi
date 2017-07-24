@@ -4,6 +4,7 @@
       %p
         %td= link_to "Edit", edit_user_album_path(album.user,album), {class:"btn btn-simple btn-primary btn-lg"}
         %td= link_to 'DELETE', [album.user,album], method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Private', set_private_user_album_path(album.user,album), method: :post 
   = link_to user_album_path(album.user,album) do
     = image_tag "album.jpg"
   %p= album.title

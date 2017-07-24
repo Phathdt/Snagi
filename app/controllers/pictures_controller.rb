@@ -1,6 +1,7 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
   before_action :check_permission
+
   def update
     if @picture.update(picture_params)
       redirect_to [@user, @picture]

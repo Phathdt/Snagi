@@ -1,7 +1,7 @@
 = link_to user_albums_path(user) do 
   .col-md-4
     .team-player
-      %img.img-raised.img-circle{:alt => "Thumbnail Image", :src => "#{image_path('default-avatar.png')}"}/
+      %img.img-raised.img-circle{:alt => "Thumbnail Image", :src => "#{image_url( user.avatar.url)}"}/
       %h4.title
         = user.name
         %br/

@@ -24,14 +24,21 @@
     %span.input-group-addon
       %i.material-icons lock_outline
     =f.password_field :password_confirmation, {class:"form-control", placeholder: "Your New Password..."}
+  
+  .input-group.padding-group
+    %span.input-group-addon
+      %i.material-icons add_a_photo
+    =f.file_field :avatar, {class:"form-control"} 
+    %i (Avatar)
+  .input-group.padding-group
+    %span.input-group-addon
+      %i.material-icons add_a_photo
+    =f.file_field :wallpaper, {class:"form-control"} 
+    %i (Wallpaper)
   .input-group.padding-group
     %span.input-group-addon
       %i.material-icons lock_outline
     =f.password_field :current_password, {class:"form-control", placeholder: "Your Current Password..."}    
     %i (we need your current password to confirm your changes)
-  .input-group.padding-group
-    %span.input-group-addon
-      %i.material-icons add_a_photo
-    =f.file_field :avatar, {class:"form-control"} 
   .actions.text-center
     = f.submit "Update", {class:"btn btn-simple btn-primary btn-lg"}
