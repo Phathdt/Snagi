@@ -4,10 +4,8 @@ class UsersController < ApplicationController
     @users = User.where(is_active:true)
   end
 
-  def disable
-    if current_user.is_admin?
-    	a = User.find(params[:id])
-    	a.toggle(:is_active).save
-    end
+  def disable_user
+    p params
+    SetActiveUserService.new({id:params[:id]}).set_active
   end
 end

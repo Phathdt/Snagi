@@ -7,13 +7,15 @@
           = render 'shared/avatar' , user: @user
           .name.text-center
             %h3.title= @user.name
-            - level = @user.is_admin? ? Admin : "Normal User"
+            - level = @user.is_admin? ? "Admin" : "Normal User"
             %h6= level
             %h6= "#{@user.following_users.count} followers"
             - if user_signed_in?
               .btn.btn-simple.btn-primary.btn-lg= link_to 'Follow', follow_user_user_album_path(@current_user,@user), method: :post
-              - if current_user.id = params[:user_id]
+              - if current_user.id == params[:user_id]
                 = link_to "Add Album", new_user_album_path, {class:"btn btn-simple btn-primary btn-lg"}
+              - if current_user.is_admin?
+                .btn.btn-simple.btn-primary.btn-lg= link_to 'Disable/Enable User', disable_user_user_album_path(@current_user,@user), method: :post
       .description.text-center
         %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio quaerat consectetur obcaecati deserunt, quos minima excepturi fugit impedit eveniet possimus nemo dicta totam quam voluptates, magni labore! Ratione, at, inventore.
       .row

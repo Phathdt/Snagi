@@ -5,12 +5,12 @@ Rails.application.routes.draw do
   }
   resources :users do
     member do
-      post :disable
+      post :disable_user
     end
     resources :albums do
       # post :like
       member do
-        post :like, :follow, :follow_user, :set_private
+        post :like, :follow, :follow_user, :set_private , :disable_user
       end
     end
     resources :pictures do

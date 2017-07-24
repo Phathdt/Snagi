@@ -64,6 +64,10 @@ class AlbumsController < ApplicationController
     SetPrivateService.new({type:'Album',id:params[:id]}).set_private
   end
 
+  def disable_user
+    p params
+    SetActiveUserService.new({id:params[:user_id]}).set_active
+  end
   private
 
   def check_permission
