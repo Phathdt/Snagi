@@ -12,8 +12,8 @@
 - @pictures.each do |picture|
   %p= link_to image_tag(picture.image.url), user_picture_path(@user,picture)
   %p= picture.title
-- if user_signed_in? && current_user.id = params[:user_id]
-  = link_to 'Destroy', [@user,picture], method: :delete, data: { confirm: 'Are you sure?' }
+  - if user_signed_in? && current_user.id = params[:user_id]
+    = link_to 'Destroy', [@user,picture], method: :delete, data: { confirm: 'Are you sure?' }
 
 
 

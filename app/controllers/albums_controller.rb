@@ -63,10 +63,6 @@ class AlbumsController < ApplicationController
   private
 
   def check_permission
-    unless user_signed_in?
-      current_user = User.new
-      current_user.id = 0
-    end
     permission = PermissionService.new({current_user:current_user,
                                         owner:params[:user_id],
                                         action: params[:action],
