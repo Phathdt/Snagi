@@ -5,7 +5,10 @@ class UsersController < ApplicationController
   end
 
   def disable_user
-    p params
     SetActiveUserService.new({id:params[:id]}).set_active
+  end
+
+  def delete_user
+    
   end
 end

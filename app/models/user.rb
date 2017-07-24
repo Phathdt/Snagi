@@ -16,10 +16,10 @@ class User < ApplicationRecord
   has_many :following, as: :followable, class_name: 'Follow'
   # ai dang follow toy
   has_many :following_users, through: :following, source: :user
-  has_many :follows
+  has_many :follows, :dependent => :destroy
   # toi dang follow ai
   has_many :followed_users, through: :follows, source: :followable, source_type: 'User'
-  has_many :followable, through: :follows
+  has_many :followable, through: :follows,:dependent => :destroy
   has_many :followed_pictures, through: :follows, source: :followable, source_type: 'Picture'
   has_many :followed_albums, through: :follows, source: :followable, source_type: 'Albums'
 

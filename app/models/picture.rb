@@ -1,4 +1,5 @@
 class Picture < ApplicationRecord
+  scope :not_private, ->{ where(is_private:false) }
   belongs_to :album
 
   has_many :likes, as: :likeable
@@ -6,7 +7,7 @@ class Picture < ApplicationRecord
 
   has_many :follows, as: :followable
   has_many :followed_users, through: :follows,source: :user
-  
+
   after_create :increase_album_quality
   after_destroy :decrease_ablum_quality
 

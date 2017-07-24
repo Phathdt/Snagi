@@ -1,10 +1,19 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
-  before_action :check_permission
+  before_action :check_permission , except: :index
 
   def index
     @user = User.find(params[:user_id])
-    @albums = Album.belongs_to_user(params[:user_id]).page(params[:page]).per(4)
+    if user_signed_in?
+      if current_user.id == params[:user_id].to_i || current_user.is_admin?
+        @albums = Album.belongs_to_user(params[:user_id]).page(params[:page]).per(4)
+      else
+        @albums = Album.not_private.belongs_to_user(params[:user_id]).page(params[:page]).per(4)
+      end
+    else
+      @albums = Album.not_private.belongs_to_user(params[:user_id]).page(params[:page]).per(4)
+    end
+
   end
 
   def new
@@ -27,7 +36,16 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    @pictures = @album.pictures.page(params[:page]).per(3)
+    if user_signed_in?
+      if current_user.id == params[:user_id].to_i || current_user.is_admin?
+        @pictures = @album.pictures.page(params[:page]).per(3)
+      else
+        @pictures = @album.pictures.where(is_private:false).page(params[:page]).per(3)
+      end
+    else
+      @pictures = @album.pictures.where(is_private:false).page(params[:page]).per(3)
+    end
+
   end
 
   def update
@@ -71,6 +89,7 @@ class AlbumsController < ApplicationController
   private
 
   def check_permission
+
     permission = PermissionService.new({current_user:current_user,
                                         owner:params[:user_id],
                                         action: params[:action],

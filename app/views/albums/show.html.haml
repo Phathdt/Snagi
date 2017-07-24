@@ -1,6 +1,7 @@
 /- wallpaper = @user.wallpaper == nil ? 'city.jpg' : @user.wallpaper.url
 
 = render "shared/wallpaper_profile", user: @user
+
 .main.main-raised
   .profile-content
     .container
@@ -9,14 +10,14 @@
           = render 'shared/avatar' , user: @user
           .name.text-center
             %h3.title= @user.name
-            - level = @user.is_admin? ? Admin : "Normal User"
+            - level = @user.is_admin? ? "Admin" : "Normal User"
             %h6= level
             %h6= @album.title
             %h6= "#{@album.followed_users.count} followers #{@album.liked_users.count} Likes"
             - if user_signed_in?
               .btn.btn-simple.btn-primary.btn-lg= link_to 'Follow', follow_user_album_path(@current_user,@album), method: :post
               .btn.btn-simple.btn-primary.btn-lg= link_to 'Like', like_user_album_path(@current_user,@album), method: :post
-              - if current_user.is_admin? || current_user.id = params[:user_id]
+              - if current_user.is_admin? || current_user.id == params[:user_id].to_i
                 .btn.btn-simple.btn-primary.btn-lg= link_to 'Edit', edit_user_album_path(@user,@album)
                 .btn.btn-simple.btn-primary.btn-lg= link_to 'Private', set_private_user_album_path(@current_user,@album), method: :post  
                 .btn.btn-simple.btn-primary.btn-lg= link_to 'Destroy', [@user,@album], method: :delete, data: { confirm: 'Are you sure?' }

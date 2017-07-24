@@ -1,4 +1,5 @@
 class PicturesController < ApplicationController
+
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
   before_action :check_permission
 
@@ -41,6 +42,7 @@ class PicturesController < ApplicationController
 
   def set_picture
     @picture = Picture.find(params[:id])
+
     @album = @picture.album
     @user = @album.user
     @current_user = current_user

@@ -1,9 +1,9 @@
 .text-center.padding-bot
-  / - if user_signed_in?
-  /   - if current_user.is_admin? || current_user.id = params[:user_id]
-  /     %p
-  /       %td= link_to "Edit", edit_user_album_path(album.user,album), {class:"btn btn-simple btn-primary btn-lg"}
-  /       %td= link_to 'DELETE', [album.user,album], method: :delete, data: { confirm: 'Are you sure?' }
+  - if user_signed_in?
+    - if current_user.is_admin? || current_user.id == params[:user_id].to_i
+      %p
+        %td= link_to "Edit", edit_user_album_path(album.user,album), {class:"btn btn-simple btn-primary btn-lg"}
+        %td= link_to 'DELETE', [album.user,album], method: :delete, data: { confirm: 'Are you sure?' }
   = link_to user_picture_path(@user,picture) do
     = image_tag picture.image.url, class: "picture"
   %p= picture.title
