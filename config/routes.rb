@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   }
   resources :users do
     member do
-      post :disable_user
+      post :disable_user, :delete_user
     end
     resources :albums do
       # post :like

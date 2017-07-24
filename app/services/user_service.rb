@@ -8,6 +8,7 @@ class UserService
   end
 
   def delete
-  	User.find(@id).delete
+  	user = User.find(@id)
+  	user.destroy unless user.is_admin?
   end
 end

@@ -13,10 +13,10 @@ class UsersController < ApplicationController
   end
 
   def disable_user
-    SetActiveUserService.new({id:params[:id]}).set_active
+    UserService.new({id:params[:id]}).set_active
   end
 
   def delete_user
-
+    UserService.new({id:params[:id]}).delete
   end
 end
