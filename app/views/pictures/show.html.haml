@@ -1,14 +1,26 @@
-%p= @picture.title
-%p= @picture.description
-= image_tag @picture.image.url
-%h1= @picture.likes.count
-%h1= @picture.is_private
-- if user_signed_in?
-  %h1= link_to 'Like', like_user_picture_path(@current_user,@picture), method: :post
-  %h1= link_to 'Follow', follow_user_picture_path(@current_user,@picture), method: :post
-  - if current_user.is_admin?
-    %h1= link_to 'Private', set_private_user_picture_path(@current_user,@picture), method: :post
-  - if current_user.is_admin? || current_user.id = params[:user_id]
-    = link_to "Edit", edit_user_picture_path(@user,@picture)
-    = link_to 'Destroy', [@user,@picture], method: :delete, data: { confirm: 'Are you sure?' }
-= link_to "Go to album", user_album_path(@user,@album)
+/- wallpaper = @user.wallpaper == nil ? 'city.jpg' : @user.wallpaper.url
+
+= render "shared/wallpaper_profile", url: 'city.jpg'
+.main.main-raised
+  .profile-content
+    .container
+      .row
+        .profile
+          .avatar
+            %img.img-circle.img-responsive.img-raised.image-center{:alt => "Circle Image", :src => "#{image_path('default-avatar.png')}"}/
+          .name.text-center
+            %h3.title= @user.name
+            - level = @user.is_admin? ? Admin : "Normal User"
+            %h6= level
+            %h6= @picture.title
+            %h6= @picture.description
+            %h6= "#{@picture.followed_users.count} followers #{@picture.liked_users.count} Likes"
+            - if user_signed_in?
+              .btn.btn-simple.btn-primary.btn-lg= link_to 'Follow', follow_user_picture_path(@current_user,@picture), method: :post
+              .btn.btn-simple.btn-primary.btn-lg= link_to 'Like', like_user_picture_path(@current_user,@picture), method: :post
+              - if current_user.is_admin? || current_user.id = params[:user_id]
+                .btn.btn-simple.btn-primary.btn-lg= link_to 'Edit', edit_user_picture_path(@user,@picture)
+                .btn.btn-simple.btn-primary.btn-lg= link_to 'Private', set_private_user_picture_path(@current_user,@picture), method: :post  
+                .btn.btn-simple.btn-primary.btn-lg= link_to 'Destroy', [@user,@picture], method: :delete, data: { confirm: 'Are you sure?' }
+      .row.text-center
+        %p= image_tag @picture.image.url, class:"image-padding"

@@ -7,3 +7,23 @@
 .padding-group{
 	padding: 20px
 }
+.image-center{
+    margin: 0 auto;
+    margin-top: 80px;
+}
+.picture {
+	width: 250px;
+    height: 200px;
+}
+.padding-bot {
+	padding-bottom: 200px
+}
+.image-padding{
+	padding-top: 0px;
+	width: 800px ;
+	height: 500px ;
+}
+.image-padding-max {
+	max-width: 1200px!important;
+	padding-top: 100px;
+}

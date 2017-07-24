@@ -3676,7 +3676,7 @@ h2.title {
   text-align: center;
 }
 .profile-page .profile img {
-  max-width: 160px;
+  max-width: 160px; 
   margin: -80px auto 0;
 }
 .profile-page .description {

@@ -1,13 +1,16 @@
 = form_for [@user,@picture] do |f|
-	.field
-		= f.label :title 
-		%br/
-		= f.text_field :title
-	.field
-		= f.label :description
-		%br/
-		= f.text_field :description
-	.field
-		= image_tag @picture.image.url
-	.action
-		= f.submit
+  .input-group.padding-group
+    %span.input-group-addon
+      %i.material-icons label
+    =f.text_field :title, {class:"form-control", placeholder: "Your Title...", autofocus: true}
+  .input-group.padding-group
+    %span.input-group-addon
+      %i.material-icons info
+    =f.text_field :description, {class:"form-control", placeholder: "Your Description..."}
+  .input-group.padding-group
+    %span.input-group-addon
+      %i.material-icons attachment
+    =f.file_field :description, {class:"form-control", placeholder: "Your Description..."}
+    = image_tag @picture.image.url, class: "image-padding image-padding-max"
+  .actions.text-center
+    = f.submit "Update", {class:"btn btn-simple btn-primary btn-lg"}

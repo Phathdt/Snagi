@@ -4,7 +4,7 @@ class AlbumsController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @albums = Album.belongs_to_user(params[:user_id]).page(params[:page]).per(5)
+    @albums = Album.belongs_to_user(params[:user_id]).page(params[:page]).per(4)
   end
 
   def new

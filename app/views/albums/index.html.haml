@@ -1,24 +1,27 @@
+/- wallpaper = @user.wallpaper == nil ? 'city.jpg' : @user.wallpaper.url
+
 = render "shared/wallpaper_profile", url: 'city.jpg'
-%p Hello World
-%h1= @user.email
-- if user_signed_in?
-  %p= link_to 'Follow', follow_user_user_album_path(@current_user,@user), method: :post
-%p= link_to "Add Album", new_user_album_path
-.table
-  %table
-    %thead
-      %tr
-        %th Title
-        %th Description
-        %th Link
-    %tbody
-      - @albums.each do |album|
-        %tr
-          %td= album.title
-          %td= album.description
-          %td= link_to "Show", user_album_path(album.user,album)
-          - if user_signed_in?
-            - if current_user.is_admin? || current_user.id == params[:user_id]
-              %td= link_to "Edit", edit_user_album_path(album.user,album)
-              %td= link_to 'Destroy', [album.user,album], method: :delete, data: { confirm: 'Are you sure?' }
-= paginate @albums
+.main.main-raised
+  .profile-content
+    .container
+      .row
+        .profile
+          .avatar
+            %img.img-circle.img-responsive.img-raised.image-center{:alt => "Circle Image", :src => "#{image_path('default-avatar.png')}"}/
+          .name.text-center
+            %h3.title= @user.name
+            - level = @user.is_admin? ? Admin : "Normal User"
+            %h6= level
+            %h6= "#{@user.following_users.count} followers"
+            - if user_signed_in?
+              .btn.btn-simple.btn-primary.btn-lg= link_to 'Follow', follow_user_user_album_path(@current_user,@user), method: :post
+              - if current_user.id = params[:user_id]
+                = link_to "Add Album", new_user_album_path, {class:"btn btn-simple btn-primary btn-lg"}
+      .description.text-center
+        %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio quaerat consectetur obcaecati deserunt, quos minima excepturi fugit impedit eveniet possimus nemo dicta totam quam voluptates, magni labore! Ratione, at, inventore.
+      .row
+        - @albums.each do |album|
+          .col-md-6
+            = render 'shared/album', album: album
+        .text-center
+          = paginate @albums

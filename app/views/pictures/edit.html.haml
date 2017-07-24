@@ -1,4 +1,15 @@
-%p Edit
-= render 'form', picture: @picture
 
 = link_to "Back", user_picture_path(@user,@picture)
+
+= render "shared/wallpaper_profile", url: 'city.jpg'
+.main.main-raised
+  .profile-content
+    .container
+      .row
+        .profile
+          .avatar
+            %img.img-circle.img-responsive.img-raised.image-center{:alt => "Circle Image", :src => "#{image_path('default-avatar.png')}"}/
+          .name.text-center
+            %h3.title= @user.name
+            = render 'form', picture: @picture
+            = link_to "Back", user_picture_path(@user,@picture), {class:"btn btn-simple btn-primary btn-lg"}

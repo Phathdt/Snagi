@@ -1,15 +1,19 @@
 = form_for [@user,@album], :html => { multipart: true } do |f|
-	.field
-		= f.label :title 
-		%br/
-		= f.text_field :title
-	.field
-		= f.label :description
-		%br/
-		= f.text_field :description
-	.field
-		= f.label :pictures
-		.controls
-		= file_field_tag "images[]",type: :file, multiple: true 
-	.action
-		= f.submit
+  .input-group.padding-group
+    %span.input-group-addon
+      %i.material-icons label
+    =f.text_field :title, {class:"form-control", placeholder: "Your Title...", autofocus: true}
+  .input-group.padding-group
+    %span.input-group-addon
+      %i.material-icons info
+    =f.text_field :description, {class:"form-control", placeholder: "Your Description..."}
+  .input-group.padding-group
+    %span.input-group-addon
+      %i.material-icons attachment
+      .controls
+        = file_field_tag "images[]",type: :file, multiple: true 
+  .actions.text-center
+    - if params[:action] == "new"
+      = f.submit "Create", {class:"btn btn-simple btn-primary btn-lg"}
+    - else
+      = f.submit "Update", {class:"btn btn-simple btn-primary btn-lg"}

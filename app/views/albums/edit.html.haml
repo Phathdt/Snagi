@@ -1,4 +1,12 @@
-%p New Album
-= render 'form', album: @album
-
-= link_to "Back", user_albums_path(@user)
+= render "shared/wallpaper_profile", url: 'city.jpg'
+.main.main-raised
+  .profile-content
+    .container
+      .row
+        .profile
+          .avatar
+            %img.img-circle.img-responsive.img-raised.image-center{:alt => "Circle Image", :src => "#{image_path('default-avatar.png')}"}/
+          .name.text-center
+            %h3.title= @user.name
+            = render 'form', album: @album, user: @user
+            = link_to "Back", user_albums_path(@user), {class:"btn btn-simple btn-primary btn-lg"}
