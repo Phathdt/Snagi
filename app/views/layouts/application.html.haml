@@ -11,12 +11,12 @@
     %link{:rel => "stylesheet", :href => "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"}/
     %link{:rel => "stylesheet", :href => "https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"}/
     = stylesheet_link_tag 'devise' ,'bootstrap.min', 'material-kit'
-    = javascript_include_tag 'jquery.min', 'material.min', 'material.min', 'bootstrap.min' 
+    = javascript_include_tag 'jquery.min', 'material.min', 'material.min', 'bootstrap.min'
   - if params[:action] == "index" && params[:controller] == "users"
     %body.landing-page
       = render "shared/navbar"
       = yield
   - else
     %body.profile-page
-      = render "shared/navbar_index"
+      = render "shared/navbar"
       = yield
