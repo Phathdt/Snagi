@@ -39,3 +39,13 @@
               %ul.dropdown-menu.dropdown-menu-right
                 %li
                   = link_to I18n.t(".log_in"), new_user_session_path
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            %i.material-icons money
+            %b.caret
+            %ul.dropdown-menu.dropdown-menu-right
+              %li.dropdown-header= I18n.t(".language")
+              %li
+                = link_to "English" , locale: "en"
+              %li
+                = link_to "Vietnamese" , locale: "vn"

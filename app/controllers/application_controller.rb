@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
   before_action :authenticate_user!, except:[:index, :show]
-  before_action :load_notification
+  before_action :load_notification, :set_locale
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -24,4 +24,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
+  private
+
+  def set_locale
+    I18n.locale = params[:locale] if params[:locale].present?
+  end
+
+  def default_url_options(options={})
+    {locale: I18n.locale}
+  end
 end
