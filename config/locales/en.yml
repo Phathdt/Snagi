@@ -36,3 +36,6 @@ en:
   image: "Your Image"
   follower: "Follower"
   likes: "Likes"
+  language: "Language"
+  eng: "English"
+  vn: "Vietnamese"

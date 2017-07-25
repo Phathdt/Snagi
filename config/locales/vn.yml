@@ -36,3 +36,6 @@ vn:
   image: "Hình ảnh ..."
   follower: "Người theo dõi"
   likes: "Lượt thích"
+  language: "Ngôn ngữ"
+  eng: "Tiếng Anh"
+  vn: "Tiếng Việt"
