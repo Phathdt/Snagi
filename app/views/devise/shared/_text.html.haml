@@ -1,8 +1,8 @@
 - if controller_name == 'registrations' && params[:action] == "new"
-  %h4 Sign Up
+  %h4= I18n.t(".sign_up")
 - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
-  %h4 Log In
+  %h4= I18n.t(".log_in")
 - if controller_name == "registrations" && params[:action] == "edit"
-  %h4 Edit Profile
+  %h4= I18n.t(".edit_profile")
 - if controller_name == "passwords" && params[:action] == "new"
-  %h4 Forgot your password
+  %h4= I18n.t(".forgot")

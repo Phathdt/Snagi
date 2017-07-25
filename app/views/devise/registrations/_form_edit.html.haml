@@ -3,18 +3,18 @@
   .input-group.padding-group
     %span.input-group-addon
       %i.material-icons face
-    =f.text_field :name, {class:"form-control", placeholder: "Your Name...", autofocus: true}
+    =f.text_field :name, {class:"form-control", placeholder: I18n.t("form_name") , autofocus: true}
   .input-group.padding-group
     %span.input-group-addon
       %i.material-icons email
-    =f.email_field :email, {class:"form-control", placeholder:"Your Email..."}
+    =f.email_field :email, {class:"form-control", placeholder: I18n.t(".form_name") }
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}
   .input-group.padding-group
     %span.input-group-addon
       %i.material-icons lock_outline
-    =f.password_field :password, {class:"form-control", placeholder:"Your New password...", autocomplete: "off"}
+    =f.password_field :password, {class:"form-control", placeholder: I18n.t(".form_password_new") , autocomplete: "off"}
     - if @minimum_password_length
       %br/
       %em
@@ -23,22 +23,22 @@
   .input-group.padding-group
     %span.input-group-addon
       %i.material-icons lock_outline
-    =f.password_field :password_confirmation, {class:"form-control", placeholder: "Your New Password..."}
-  
+    =f.password_field :password_confirmation, {class:"form-control", placeholder: I18n.t(".your_password_new") }
+
   .input-group.padding-group
     %span.input-group-addon
       %i.material-icons add_a_photo
-    =f.file_field :avatar, {class:"form-control"} 
-    %i (Avatar)
+    =f.file_field :avatar, {class:"form-control"}
+    %i= "(#{I18n.t(".avatar") })"
   .input-group.padding-group
     %span.input-group-addon
       %i.material-icons add_a_photo
-    =f.file_field :wallpaper, {class:"form-control"} 
-    %i (Wallpaper)
+    =f.file_field :wallpaper, {class:"form-control"}
+    %i= "(#{I18n.t(".wallpaper") })"
   .input-group.padding-group
     %span.input-group-addon
       %i.material-icons lock_outline
-    =f.password_field :current_password, {class:"form-control", placeholder: "Your Current Password..."}    
-    %i (we need your current password to confirm your changes)
+    =f.password_field :current_password, {class:"form-control", placeholder: I18n.t(".form_password_current") }
+    %i= "(#{I18n.t(".form_confirm_text") })"
   .actions.text-center
-    = f.submit "Update", {class:"btn btn-simple btn-primary btn-lg"}
+    = f.submit I18n.t(".update"), {class:"btn btn-simple btn-primary btn-lg"}

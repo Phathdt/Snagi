@@ -9,17 +9,18 @@
           = render 'shared/avatar' , user: @user
           .name.text-center
             %h3.title= @user.name
-            - level = @user.is_admin? ? "Admin" : "Normal User"
+            - level = @user.is_admin? ? I18n.t(".admin") : I18n.t(".user")
             %h6= level
             %h6= @picture.title
             %h6= @picture.description
-            %h6= "#{@picture.followed_users.count} followers #{@picture.liked_users.count} Likes"
+            %h6= "#{@picture.followed_users.count} #{I18n.t(".follower") }"
+            %h6= "#{@picture.liked_users.count} #{I18n.t(".likes") }"
             - if user_signed_in?
-              .btn.btn-simple.btn-primary.btn-lg= link_to 'Follow', follow_user_picture_path(@current_user,@picture), method: :post
-              .btn.btn-simple.btn-primary.btn-lg= link_to 'Like', like_user_picture_path(@current_user,@picture), method: :post
+              .btn.btn-simple.btn-primary.btn-lg= link_to I18n.t(".update"), follow_user_picture_path(@current_user,@picture), method: :post
+              .btn.btn-simple.btn-primary.btn-lg= link_to I18n.t(".like"), like_user_picture_path(@current_user,@picture), method: :post
               - if current_user.is_admin? || current_user.id == params[:user_id].to_i
-                .btn.btn-simple.btn-primary.btn-lg= link_to 'Edit', edit_user_picture_path(@user,@picture)
-                .btn.btn-simple.btn-primary.btn-lg= link_to 'Private', set_private_user_picture_path(@current_user,@picture), method: :post  
-                .btn.btn-simple.btn-primary.btn-lg= link_to 'Destroy', [@user,@picture], method: :delete, data: { confirm: 'Are you sure?' }
+                .btn.btn-simple.btn-primary.btn-lg= link_to I18n.t(".edit"), edit_user_picture_path(@user,@picture)
+                .btn.btn-simple.btn-primary.btn-lg= link_to I18n.t(".private"), set_private_user_picture_path(@current_user,@picture), method: :post
+                .btn.btn-simple.btn-primary.btn-lg= link_to I18n.t(".delete"), [@user,@picture], method: :delete, data: { confirm: I18n.t(".data_confirm") }
       .row.text-center
         %p= image_tag @picture.image.url, class:"image-padding"

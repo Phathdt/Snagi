@@ -7,8 +7,8 @@
     .container
       .row
         .profile
-          = render 'shared/avatar' , user: @user          
+          = render 'shared/avatar' , user: @user
           .name.text-center
             %h3.title= @user.name
             = render 'form', picture: @picture
-            = link_to "Back", user_picture_path(@user,@picture), {class:"btn btn-simple btn-primary btn-lg"}
+            = link_to I18n.t(".back") , user_picture_path(@user,@picture), {class:"btn btn-simple btn-primary btn-lg"}

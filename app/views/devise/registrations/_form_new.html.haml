@@ -3,24 +3,23 @@
   .input-group.padding-group
     %span.input-group-addon
       %i.material-icons face
-    =f.text_field :name, {class:"form-control", placeholder: "Your Name...", autofocus: true}
+    =f.text_field :name, {class:"form-control", placeholder: I18n.t(".form_name") , autofocus: true}
   .input-group.padding-group
     %span.input-group-addon
       %i.material-icons email
-    =f.email_field :email, {class:"form-control", placeholder:"Your Email..."}
+    =f.email_field :email, {class:"form-control", placeholder: I18n.t(".form_email")}
   .input-group.padding-group
     %span.input-group-addon
       %i.material-icons lock_outline
-    =f.password_field :password, {class:"form-control", placeholder: "Your Password..."}
+    =f.password_field :password, {class:"form-control", placeholder: I18n.t(".form_password") }
     - if @minimum_password_length
       %br/
       %em
-        = @minimum_password_length
-        characters minimum
+        = "#{@minimum_password_length} #{I18n.t(".characters_minimum")}"
   .input-group.padding-group
     %span.input-group-addon
       %i.material-icons lock_outline
-    =f.password_field :password_confirmation, {class:"form-control", placeholder: "Your Password..."}
+    =f.password_field :password_confirmation, {class:"form-control", placeholder: I18n.t(".form_password") }
   .footer.text-center
-    = f.submit "Sign up", {class:"btn btn-simple btn-primary btn-lg"}
+    = f.submit I18n.t(".sign_up"), {class:"btn btn-simple btn-primary btn-lg"}
 

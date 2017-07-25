@@ -1,4 +1,4 @@
-= link_to user_albums_path(user) do 
+= link_to user_albums_path(user) do
   .col-md-4
     .team-player
       - avatar = user.avatar.exists? ? image_url( user.avatar.url) : image_path("default-avatar.png")
@@ -6,12 +6,12 @@
       %h4.title
         = user.name
         %br/
-        %small.text-muted 
+        %small.text-muted
           = user.email
         %br/
         %small.text-muted
         - if user_signed_in?
           - if current_user.is_admin?
             = render "shared/admin_permission", user: user
-      %p.description
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus veniam quod pariatur, nam modi consequatur labore molestiae? Eveniet magni explicabo tempora similique! Doloremque ipsam, blanditiis at culpa, vero suscipit quis.
+      %p.description= I18n.t(".lorem")
+

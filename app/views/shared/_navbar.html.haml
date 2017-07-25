@@ -16,20 +16,20 @@
               %i.material-icons face
               %b.caret
             %ul.dropdown-menu.dropdown-menu-right
-              %li.dropdown-header Authencation
+              %li.dropdown-header= I18n.t(".authentication")
               %li
-                = link_to "Log Out", destroy_user_session_path,:method => :delete
+                = link_to I18n.t(".log_out"), destroy_user_session_path,:method => :delete
               %li
-                = link_to "Edit Profile", edit_user_registration_path
+                = link_to I18n.t(".edit_profile"), edit_user_registration_path
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-              =  @count_un_read_notification
+              = "#{@count_un_read_notification} "
               %i.material-icons mail
               %b.caret
             %ul.dropdown-menu.dropdown-menu-right
               - @notifications.each do |notification|
                 %li
-                  %a{:href => ""} 
+                  %a{:href => ""}
                   = link_to notification.content, user_album_path(1,notification.object_id)
         - else
           %li.dropdown
@@ -38,4 +38,4 @@
               %b.caret
               %ul.dropdown-menu.dropdown-menu-right
                 %li
-                  = link_to "Log In", new_user_session_path
+                  = link_to I18n.t(".log_in"), new_user_session_path

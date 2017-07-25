@@ -9,4 +9,4 @@
           .name.text-center
             %h3.title= @user.name
             = render 'form', album: @album, user: @user
-            = link_to "Back", user_albums_path(@user), {class:"btn btn-simple btn-primary btn-lg"}
+            = link_to I18n.t(".back") , user_albums_path(@user), {class:"btn btn-simple btn-primary btn-lg"}

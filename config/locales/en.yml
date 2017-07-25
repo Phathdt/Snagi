@@ -1,33 +1,38 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  title: "Welcome to Snagi"
+  lorem: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae vero quia, quae vel dignissimos cupiditate similique error at fuga voluptatibus, ratione facere accusamus in repellat, inventore saepe omnis sed corporis."
+  disable: "Disadble"
+  delete: "Delete"
+  edit: "Edit"
+  create: "Create"
+  update: "Update"
+  back: "Back"
+  follow: "Follow"
+  like: "Like"
+  sign_up: "Sign Up"
+  add_album: "Add Album"
+  data_confirm: "Are you sure?"
+  private: "Private"
+  authentication: "Authencation"
+  log_out: "Log Out"
+  log_in: "Log In"
+  forgot: "Forgot your password"
+  edit_profile: "Edit Profile"
+  list_user: "List User"
+  form_title: "Your Title ..."
+  form_name: "Your Name ..."
+  form_email: "Your Email"
+  form_password: "Your Password ..."
+  form_password_new: "Your New Password ..."
+  form_password_current: "Your Current Password"
+  form_description: "Your Description ..."
+  form_confirm_text: "we need your current password to confirm your changes"
+  avatar: "Avatar"
+  wallpaper: "Wallpaper"
+  admin: "Admin"
+  user: "Normal User"
+  characters_minimum: "characters minimum"
+  remember_me: "Remember Me"
+  image: "Your Image"
+  follower: "Follower"
+  likes: "Likes"

@@ -23,4 +23,5 @@ class ApplicationController < ActionController::Base
       p @count_un_read_notification
     end
   end
+
 end
