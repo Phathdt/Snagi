@@ -18,7 +18,9 @@ class ApplicationController < ActionController::Base
 
   def load_notification
     if user_signed_in?
-      @notifications = NotificationService.new({user_id:current_user.id}).show_notifications
+      @count_un_read_notification = NotificationService. count_un_read(current_user.id)
+      @notifications = NotificationService.show_notifications(current_user.id)
+      p @count_un_read_notification
     end
   end
 end

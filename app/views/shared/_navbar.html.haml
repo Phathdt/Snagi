@@ -1,25 +1,41 @@
-%nav.navbar.navbar-transparent.navbar-fixed-top
-  .container
+%nav.navbar.navbar-info.navbar-fixed-top
+  .container-fluid
     .navbar-header
-      %button.navbar-toggle{"data-target" => "#navigation-example", "data-toggle" => "collapse", :type => "button"}
+      %button.navbar-toggle{"data-target" => "#example-navbar-icons", "data-toggle" => "collapse", :type => "button"}
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
       = link_to "Snagi", root_path, class: "navbar-brand"
-    #navigation-example.collapse.navbar-collapse
+
+    #example-navbar-icons.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
-          %li
-            = link_to "Log Out", destroy_user_session_path,:method => :delete
-          %li
-            = link_to "Your Page", user_albums_path(current_user)
-          %li
-            = link_to "Edit Profile", edit_user_registration_path
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %i.material-icons face
+              %b.caret
+            %ul.dropdown-menu.dropdown-menu-right
+              %li.dropdown-header Authencation
+              %li
+                = link_to "Log Out", destroy_user_session_path,:method => :delete
+              %li
+                = link_to "Edit Profile", edit_user_registration_path
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              =  @count_un_read_notification
+              %i.material-icons mail
+              %b.caret
+            %ul.dropdown-menu.dropdown-menu-right
+              - @notifications.each do |notification|
+                %li
+                  %a{:href => ""} 
+                  = link_to notification.content, user_album_path(1,notification.object_id)
         - else
-          %li
-            = link_to "Log in",  new_user_session_path
-        %li
-          %a{:href => ""}
-            %i.material-icons pageview
-            Notification
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              %i.material-icons face
+              %b.caret
+              %ul.dropdown-menu.dropdown-menu-right
+                %li
+                  = link_to "Log In", new_user_session_path
