@@ -21,6 +21,8 @@
                 = link_to I18n.t(".log_out"), destroy_user_session_path,:method => :delete
               %li
                 = link_to I18n.t(".edit_profile"), edit_user_registration_path
+              %li
+                = link_to I18n.t(".your_page"), user_albums_path(current_user)
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               = "#{@count_un_read_notification} "
