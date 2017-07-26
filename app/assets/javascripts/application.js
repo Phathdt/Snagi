@@ -15,3 +15,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap/modal
+//= require bootstrap.min
+//= require jquery.min
+//= require material-kit
+//= require material.min
+//= require_tree
