@@ -14,9 +14,10 @@
               - if current_user.id != params[:user_id].to_i
                 .btn.btn-simple.btn-primary.btn-lg= link_to I18n.t(".follow") , follow_user_user_album_path(@current_user,@user), method: :post
               - if current_user.id == params[:user_id].to_i
-                = link_to I18n.t(".add_album") , new_user_album_path, {class:"btn btn-simple btn-primary btn-lg"}
+                = link_to I18n.t(".add_album") , new_user_album_path, {class:"btn btn-simple btn-primary btn-lg", remote: true}
               - if current_user.is_admin?
                 .btn.btn-simple.btn-primary.btn-lg= link_to I18n.t(".disable"), disable_user_user_album_path(@user,@current_user), method: :post
+      #modal
       .description.text-center
         %p= I18n.t(".lorem")
       .row

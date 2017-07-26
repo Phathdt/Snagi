@@ -19,6 +19,7 @@ class AlbumsController < ApplicationController
   def new
     @album = Album.new
     @user = current_user
+
   end
 
   def create
@@ -32,6 +33,19 @@ class AlbumsController < ApplicationController
       redirect_to user_album_path(current_user,@album), notice: 'Album was successfully created.'
     else
       render 'new'
+    end
+    respond_to do |format|
+      if @album.save
+        if params[:images]
+          params[:images].each { |image|
+            @album.pictures.create(image: image)
+          }
+        end
+        format.html { redirect_to user_album_path(current_user,@album), notice: 'Album was successfully created.' }
+        format.js
+      else
+        format.html { render :new }
+      end
     end
   end
 
