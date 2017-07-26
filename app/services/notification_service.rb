@@ -1,4 +1,5 @@
 class NotificationService
+  MAX_NOTI = 10
   def initialize(params)
     @type = params[:type]
     @id = params[:id]
@@ -7,35 +8,45 @@ class NotificationService
   end
 
   def send_notifications
-    user_ids = Follow.where("followable_id = ? AND followable_type = ? ",
-                            @id, @type).pluck(:user_id)
+    user_ids = Follow.get_user_id_by(@id,@type)
     Notification.transaction do
       if @type == "Album"
         user_ids.each do |user_id|
           album = Album.find(@id)
-          Notification.create(user_id:user_id, content:"Album #{@id} change",
-                              user_has_id: album.user.id, object_id: @id)
+          create_noti_album_change(user_id,@id,album.user.id)
         end
       else
         user_ids.each do |user_id|
           album = Album.find(@album_id)
-          Notification.create(user_id:user_id, content:"Album #{@album_id} create",
-                              user_has_id: album.user.id, object_id: @id)
+          create_noti_album_create(user_id,@id,album.user.id)
         end
       end
-
     end
   end
 
   def self.count_un_read(user_id)
-    Notification.where(user_id:user_id).count_un_readed
+    Notification.find_noti(user_id).count_un_readed
   end
 
   def self.show_notifications(user_id)
-    Notification.where(user_id:user_id).last(10)
+    Notification.find_noti(user_id).last_limit(MAX_NOTI)
   end
 
   def self.set_readed(id)
-    Notification.where(id:id).update(is_readed:true)
+    Notification.set_readed(id)
+  end
+
+  private
+
+  def create_noti_album_change(user_id, id, user_has_id)
+    Notification.create(user_id:user_id,
+                        content: I18n.t(".noti_album_change",id: id),
+                        user_has_id: user_has_id, object_id: id)
+  end
+
+  def create_noti_album_create(user_id, id, user_has_id)
+    Notification.create(user_id:user_id,
+                        content: I18n.t(".noti_album_create",id: id),
+                        user_has_id: user_has_id, object_id: id)
   end
 end

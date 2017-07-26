@@ -6,9 +6,7 @@ class FollowService
   end
 
   def follow
-    if Follow.where(:followable_type => @type,
-                  :followable_id => @id,
-                  :user_id => @user_id).exists?
+    if Follow.find_follow(@user_id, @type, @id, ).present?
       delete_follow
     else
       add_follow
@@ -17,14 +15,15 @@ class FollowService
   private
 
   def add_follow
-    Follow.create(:followable_type => @type,
-                :followable_id => @id,
-                :user_id => @user_id)
+    create_follow(@user_id, @type, @id)
   end
 
   def delete_follow
-    Follow.find_by(:followable_type => @type,
-                 :followable_id => @id,
-                 :user_id => @user_id).delete
+    Follow.find_follow(@user_id,@type, @id ).delete
+  end
+
+  def create_follow(user_id, type, id)
+    Follow.create(followable_type: type,
+                  followable_id: id,user_id: user_id)
   end
 end

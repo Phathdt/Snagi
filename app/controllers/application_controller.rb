@@ -20,7 +20,6 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       @count_un_read_notification = NotificationService. count_un_read(current_user.id)
       @notifications = NotificationService.show_notifications(current_user.id)
-      p @count_un_read_notification
     end
   end
 

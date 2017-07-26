@@ -5,10 +5,10 @@ class UsersController < ApplicationController
       if current_user.is_admin?
         @users = User.all
       else
-        @users = User.where(is_active:true)
+        @users = User.active
       end
     else
-      @users = User.where(is_active:true)
+      @users = User.active
     end
   end
 
@@ -21,10 +21,10 @@ class UsersController < ApplicationController
   end
 
   def disable_user
-    UserService.new({id:params[:id]}).set_active
+    UserService.new({id: params[:id]}).set_active
   end
 
   def delete_user
-    UserService.new({id:params[:id]}).delete
+    UserService.new({id: params[:id]}).delete
   end
 end

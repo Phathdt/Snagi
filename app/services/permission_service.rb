@@ -5,9 +5,7 @@ class PermissionService
     @action = params[:action]
     @id = params[:id]
     @type = params[:type]
-    if @current_user == nil
-      @current_user = User.new
-    end
+    @current_user ||= User.new
   end
 
   def have_permission?

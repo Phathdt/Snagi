@@ -40,3 +40,8 @@ vn:
   eng: "Tiếng Anh"
   vn: "Tiếng Việt"
   your_page: "Trang nhà"
+  album_create: "Album được tạo thành công."
+  album_update: "Album được update thành công."
+  album_destroy: "Album đã được xóa"
+  noti_album_change: "Album %{id} vừa có sự thay đổi"
+  noti_album_create: "Album %{id} vừa được tạo"
