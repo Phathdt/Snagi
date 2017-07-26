@@ -3,7 +3,7 @@
     - if current_user.is_admin? || current_user.id == params[:user_id].to_i
       %p
         %td= link_to I18n.t(".edit") , edit_user_picture_path(picture.album.user,picture), {class:"btn btn-simple btn-primary btn-lg"}
-        %td= link_to I18n.t(".delete"), [picture.album.user,picture], method: :delete, data: { confirm: I18n.t(".data_confirm") }
+        %td= link_to I18n.t(".delete"), [picture.album.user,picture], method: :delete, class:"btn btn-simple btn-primary btn-lg",data: { confirm: I18n.t(".data_confirm") }
   = link_to user_picture_path(picture.album.user,picture) do
     = image_tag picture.image.url, class: "picture"
   %p= picture.title

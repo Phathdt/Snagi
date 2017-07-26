@@ -30,7 +30,7 @@
               - @notifications.each do |notification|
                 %li
                   %a{:href => ""}
-                  = link_to notification.content, user_album_path(1,notification.object_id)
+                  = link_to notification.content, read_notification_user_path(notification),method: :post
         - else
           %li.dropdown
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}

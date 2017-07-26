@@ -9,7 +9,8 @@ class NotificationService
     user_ids = Follow.where("followable_id = ? AND followable_type = ? ", @id, @type).pluck(:user_id)
     Notification.transaction do
     	user_ids.each do |user_id|
-    		Notification.create(user_id:user_id, content:"Album #{@id} change", object_type: "Album", object_id: @id)
+        album = Album.find(@id)
+    		Notification.create(user_id:user_id, content:"Album #{@id} change", user_has_id: album.user.id, object_id: @id)
     	end
     end
   end

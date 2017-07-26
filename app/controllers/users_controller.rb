@@ -12,6 +12,14 @@ class UsersController < ApplicationController
     end
   end
 
+
+
+  def read_notification
+    notification = Notification.find(params[:id])
+    NotificationService.set_readed(params[:id])
+    redirect_to user_album_path(notification.user_has_id ,notification.object_id)
+  end
+
   def disable_user
     UserService.new({id:params[:id]}).set_active
   end
