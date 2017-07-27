@@ -26,17 +26,15 @@ class AlbumsController < ApplicationController
 
   def create
     @album = current_user.albums.build(album_params)
-    respond_to do |format|
-      if @album.save
-        if params[:images]
-          params[:images].each { |image|
-            @album.pictures.create(image: image)
-          }
-        end
-        format.html { redirect_to user_album_path(current_user,@album), notice: I18n.t(".album_create")}
-      else
-        format.html { render :new }
+    if @album.save
+      if params[:images]
+        params[:images].each { |image|
+          @album.pictures.create(image: image)
+        }
       end
+      redirect_to user_album_path(current_user,@album), notice: I18n.t(".album_create")
+    else
+      render :new
     end
   end
 
