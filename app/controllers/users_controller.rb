@@ -1,18 +1,8 @@
 class UsersController < ApplicationController
   before_action :load_notification
   def index
-    if user_signed_in?
-      if current_user.is_admin?
-        @users = User.all
-      else
-        @users = User.active
-      end
-    else
-      @users = User.active
-    end
+    @users = UserService.new(current_user: current_user).return_user
   end
-
-
 
   def read_notification
     notification = Notification.find(params[:id])
@@ -21,10 +11,15 @@ class UsersController < ApplicationController
   end
 
   def disable_user
-    UserService.new({id: params[:id]}).set_active
+    get_user_service(params[:id]).set_active
   end
 
   def delete_user
-    UserService.new({id: params[:id]}).delete
+    get_user_service(params[:id]).delete
+  end
+
+  private
+  def get_user_service(id)
+    UserService.new({id: id})
   end
 end
