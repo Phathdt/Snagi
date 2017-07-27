@@ -41,6 +41,7 @@ vn:
   vn: "Tiếng Việt"
   your_page: "Trang nhà"
   album_create: "Album được tạo thành công."
+  album_fail: "Album không thành công, xin thử lại"
   album_update: "Album được update thành công."
   album_destroy: "Album đã được xóa"
   noti_album_change: "Album %{id} vừa có sự thay đổi"

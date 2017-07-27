@@ -1,3 +1,4 @@
+= render "shared/flash", flash: flash
 = form_for [@user,@album], :html => { multipart: true } do |f|
   .input-group.padding-group
     %span.input-group-addon

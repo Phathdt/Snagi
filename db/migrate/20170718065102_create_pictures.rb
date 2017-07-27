@@ -5,7 +5,6 @@ class CreatePictures < ActiveRecord::Migration[5.1]
       t.text :title
       t.text :description
       t.boolean :is_private, default: false
-      t.integer :like_count, default: 0
 
       t.timestamps
     end

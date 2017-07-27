@@ -1,66 +1,46 @@
 class AlbumsController < ApplicationController
-  PAGE_PAGINATE = 4
-  PICTURE = 3
   before_action :set_album, only: [:show, :edit, :update, :destroy]
   before_action :check_permission , except: :index
 
   def index
+    @albums = AlbumService.new({user_id: params[:user_id].to_i,
+                                current_user: current_user,
+                                signed_in: user_signed_in?,
+                                page: params[:page]}).return_albums
     @user = User.find(params[:user_id])
-    if user_signed_in?
-      if current_user.id == params[:user_id].to_i || current_user.is_admin?
-        @albums = Album.belongs_to_user(params[:user_id]).page(params[:page]).per(PAGE_PAGINATE)
-      else
-        @albums = Album.not_private.belongs_to_user(params[:user_id]).page(params[:page]).per(PAGE_PAGINATE)
-      end
-    else
-      @albums = Album.not_private.belongs_to_user(params[:user_id]).page(params[:page]).per(PAGE_PAGINATE)
-    end
-
   end
 
   def new
     @album = Album.new
     @user = current_user
-
   end
 
   def create
     @album = current_user.albums.build(album_params)
     if @album.save
-      if params[:images]
-        params[:images].each { |image|
-          @album.pictures.create(image: image)
-        }
-      end
+      AlbumService.add_picture(@album,params[:images]) if params[:images]
       redirect_to user_album_path(current_user,@album), notice: I18n.t(".album_create")
     else
-      render :new
+      redirect_to new_user_album_path(params[:user_id]), notice: I18n.t(".album_fail")
     end
   end
 
   def show
-    if user_signed_in?
-      if current_user.id == params[:user_id].to_i || current_user.is_admin?
-        @pictures = @album.pictures.page(params[:page]).per(PICTURE)
-      else
-        @pictures = @album.pictures.not_private.page(params[:page]).per(PICTURE)
-      end
-    else
-      @pictures = @album.pictures.not_private.page(params[:page]).per(PICTURE)
-    end
+    signed_in = user_signed_in? ? true : false
 
+    @pictures = AlbumService.new({user_id: params[:user_id].to_i,
+                                  current_user: current_user,
+                                  signed_in: signed_in,
+                                  page: params[:page],
+                                  album: @album}).return_pictures
   end
 
   def update
     if @album.update(album_params)
-      if params[:images]
-        params[:images].each { |image|
-          @album.pictures.create(image: image)
-        }
-      end
+      AlbumService.add_picture(@album,params[:images]) if params[:images]
       redirect_to user_album_path(@user,@album), notice: I18n.t(".album_update")
     else
-      render 'edit'
+      redirect_to edit_user_album_path(params[:user_id],@album), notice: I18n.t(".album_fail")
     end
   end
 

@@ -41,6 +41,7 @@ en:
   vn: "Vietnamese"
   your_page: "Go to Your page"
   album_create: "Album was successfully created."
+  album_fail: "Album was Fail."
   album_update: "Album was successfully updated."
   album_destroy: "Album destroy"
   noti_album_change: "Album %{id} change"

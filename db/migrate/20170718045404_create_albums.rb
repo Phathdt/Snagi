@@ -6,7 +6,6 @@ class CreateAlbums < ActiveRecord::Migration[5.1]
       t.text :description
       t.integer :quality, default: 0
       t.boolean :is_private, default: false
-      t.integer :like_count, default: 0
 
       t.timestamps
     end

@@ -8,10 +8,10 @@ class Album < ApplicationRecord
   belongs_to :user
   has_many :pictures, dependent: :destroy
 
-  has_many :likes, as: :likeable
+  has_many :likes, as: :likeable, dependent: :destroy
   has_many :liked_users, through: :likes,source: :user
 
-  has_many :follows, as: :followable
+  has_many :follows, as: :followable ,dependent: :destroy
   has_many :followed_users, through: :follows,source: :user
 
   validates :title, presence: true
