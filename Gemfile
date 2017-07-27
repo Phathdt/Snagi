@@ -20,10 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'haml-rails'
 # Use devise
 gem 'devise'
-# Use Hirb
-gem 'hirb'
-# Use Faker
-gem 'faker'
+
 # Use Paperclip
 gem "paperclip", "~> 5.0.0"
 # Use gem Kaminari to paginate
@@ -44,6 +41,10 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'pry'
+  gem 'rspec-rails'
+  gem 'hirb'
+  gem 'faker'
+  gem 'factory_girl_rails'
 end
 
 group :development do
@@ -53,6 +54,11 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
