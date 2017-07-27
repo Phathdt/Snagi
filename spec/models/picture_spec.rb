@@ -10,4 +10,9 @@ RSpec.describe Picture, type: :model do
       it { should have_db_column(:is_private).of_type(:boolean) }
     end
   end
+
+  describe "validations" do
+    it { should validate_presence_of(:image_file_name) }
+    it { should validate_presence_of(:image_content_type) }
+  end
 end

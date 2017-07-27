@@ -14,6 +14,9 @@ class Album < ApplicationRecord
   has_many :follows, as: :followable
   has_many :followed_users, through: :follows,source: :user
 
+  validates :title, presence: true
+  validates :quality, numericality: { only_integer: true }
+  validates :is_private,inclusion: { in: [true, false] }
   private 
   def send_notification_user
     user = self.user

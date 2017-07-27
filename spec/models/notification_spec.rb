@@ -11,4 +11,8 @@ RSpec.describe Notification, type: :model do
       it { should have_db_column(:is_readed).of_type(:boolean) }
     end
   end
+
+  describe "association" do
+    it { should belong_to(:user)}
+  end
 end

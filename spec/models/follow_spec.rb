@@ -9,4 +9,9 @@ RSpec.describe Follow , type: :model do
       it { should have_db_column(:followable_id).of_type(:integer) }
     end
   end
+
+  describe "association" do
+    it { should belong_to(:user) }
+    it { should belong_to(:followable) }
+  end
 end

@@ -13,6 +13,9 @@ class Picture < ApplicationRecord
 
   has_attached_file :image
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  validates :image_file_name, presence: true 
+  validates :image_content_type, presence: true 
+  validates :is_private,inclusion: { in: [true, false] }
 
   private
 
